@@ -4,49 +4,49 @@
    ============================================ */
 
 :root {
-    /* Dark backgrounds - Lighter */
-    --bg-primary: #1a1d2e;
-    --bg-secondary: #242938;
-    --bg-tertiary: #2d3250;
-    --bg-card: #2d3250;
-    --bg-card-hover: #363d5c;
+    /* Dark backgrounds - True blacks with subtle warmth */
+    --bg-primary: #0a0e14;
+    --bg-secondary: #13171f;
+    --bg-tertiary: #1a1f2e;
+    --bg-card: #161b26;
+    --bg-card-hover: #1e2433;
 
-    /* Text colors - Brighter */
-    --text-primary: #ffffff;
-    --text-secondary: #e0e4f0;
-    --text-muted: #a8b0c8;
+    /* Text colors - Refined hierarchy */
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --text-muted: #6e7681;
 
-    /* Accent colors - Brighter cyan/blue theme */
-    --accent-primary: #60d0ff;
-    --accent-secondary: #3b9eff;
-    --accent-success: #4ade80;
-    --accent-warning: #fbbf24;
-    --accent-danger: #f87171;
+    /* Accent colors - Muted blue theme */
+    --accent-primary: #4a7ba7;
+    --accent-secondary: #5d8ab8;
+    --accent-success: #3fb950;
+    --accent-warning: #d29922;
+    --accent-danger: #da3633;
 
-    /* Borders */
-    --border-default: #30363d;
-    --border-muted: #21262d;
+    /* Borders - Subtle separation */
+    --border-default: #21262d;
+    --border-muted: #161b22;
 
-    /* Shadows & Glows */
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.25);
-    --glow-primary: 0 0 20px rgba(88, 166, 255, 0.3);
-    --glow-success: 0 0 20px rgba(63, 185, 80, 0.3);
+    /* Shadows - Deeper, more refined */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 3px 8px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    --glow-primary: 0 0 16px rgba(74, 123, 167, 0.15);
+    --glow-success: 0 0 16px rgba(63, 185, 80, 0.15);
 
-    /* Spacing */
-    --space-xs: 4px;
-    --space-sm: 8px;
-    --space-md: 16px;
-    --space-lg: 24px;
-    --space-xl: 32px;
-    --space-2xl: 48px;
+    /* Spacing - More generous */
+    --space-xs: 6px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 28px;
+    --space-xl: 40px;
+    --space-2xl: 56px;
 
-    /* Border radius */
-    --radius-sm: 6px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-xl: 16px;
+    /* Border radius - Softer */
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 10px;
+    --radius-xl: 12px;
 }
 
 /* ============================================
@@ -63,14 +63,17 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
     background: var(--bg-primary);
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.65;
     min-height: 100vh;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-    /* Subtle grid pattern - More visible */
+    /* Subtle grid pattern - Minimal */
     background-image:
-        linear-gradient(to right, rgba(96, 208, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(96, 208, 255, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
+        linear-gradient(to right, rgba(74, 123, 167, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(74, 123, 167, 0.03) 1px, transparent 1px);
+    background-size: 64px 64px;
 }
 
 /* ============================================
@@ -93,7 +96,6 @@ body:has(#loginForm) {
 
 .login-box {
     background: var(--bg-card);
-    backdrop-filter: blur(16px);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-xl);
     padding: var(--space-2xl);
@@ -119,17 +121,16 @@ body:has(#loginForm) {
 
 .header h1 {
     font-size: 32px;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    color: var(--text-primary);
     margin-bottom: var(--space-sm);
+    letter-spacing: -0.02em;
 }
 
 .header p {
     color: var(--text-secondary);
     font-size: 14px;
+    font-weight: 400;
 }
 
 .input-group {
@@ -139,9 +140,10 @@ body:has(#loginForm) {
 .input-group label {
     display: block;
     margin-bottom: var(--space-sm);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
-    color: var(--text-primary);
+    color: var(--text-secondary);
+    letter-spacing: 0.01em;
 }
 
 .input-group input {
@@ -190,23 +192,23 @@ body:has(#loginForm) {
 .login-btn {
     width: 100%;
     padding: 12px 24px;
-    background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+    background: var(--accent-primary);
     border: none;
     border-radius: var(--radius-md);
     color: white;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.15s ease;
 }
 
 .login-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--glow-primary);
+    background: var(--accent-secondary);
+    box-shadow: var(--shadow-md);
 }
 
 .login-btn:active {
-    transform: translateY(0);
+    transform: scale(0.98);
 }
 
 .login-btn:disabled {
@@ -235,7 +237,6 @@ body:has(#loginForm) {
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(12px);
 }
 
 .nav-left {
@@ -245,12 +246,10 @@ body:has(#loginForm) {
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .nav-breadcrumb {
@@ -319,17 +318,17 @@ body:has(#loginForm) {
 .stats-section,
 .audit-section {
     background: var(--bg-card);
-    backdrop-filter: blur(16px);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
 }
 
 .section-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     margin-bottom: var(--space-lg);
     color: var(--text-primary);
+    letter-spacing: -0.01em;
 }
 
 .section-subtitle {
@@ -352,7 +351,7 @@ body:has(#loginForm) {
 
 .level-label {
     fill: var(--text-muted);
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -360,8 +359,8 @@ body:has(#loginForm) {
 
 .level-value {
     fill: var(--accent-primary);
-    font-size: 52px;
-    font-weight: 700;
+    font-size: 48px;
+    font-weight: 600;
 }
 
 /* Stats List */
@@ -420,11 +419,11 @@ body:has(#loginForm) {
 }
 
 .audit-fill.done {
-    background: linear-gradient(90deg, var(--accent-success), #4ade80);
+    background: var(--accent-success);
 }
 
 .audit-fill.received {
-    background: linear-gradient(90deg, var(--accent-primary), #60a5fa);
+    background: var(--accent-primary);
 }
 
 .audit-amount {
@@ -441,12 +440,9 @@ body:has(#loginForm) {
 }
 
 .audit-ratio-number {
-    font-size: 42px;
-    font-weight: 700;
-    background: linear-gradient(135deg, var(--accent-success), var(--accent-primary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 38px;
+    font-weight: 600;
+    color: var(--accent-primary);
 }
 
 /* ============================================
@@ -460,15 +456,17 @@ body:has(#loginForm) {
 }
 
 .welcome-header h1 {
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 26px;
+    font-weight: 600;
     margin-bottom: var(--space-sm);
     color: var(--text-primary);
+    letter-spacing: -0.02em;
 }
 
 .welcome-subtitle {
     color: var(--text-secondary);
     font-size: 14px;
+    font-weight: 400;
 }
 
 .graphs-container {
@@ -479,10 +477,9 @@ body:has(#loginForm) {
 
 .graph-card {
     background: var(--bg-card);
-    backdrop-filter: blur(16px);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
-    padding: var(--space-lg);
+    padding: var(--space-xl);
 }
 
 .graph-card:first-child {
@@ -512,7 +509,6 @@ body:has(#loginForm) {
 
 .activity-section {
     background: var(--bg-card);
-    backdrop-filter: blur(16px);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
@@ -612,31 +608,22 @@ body:has(#loginForm) {
 .audit-section,
 .activity-section {
     animation: fadeInUp 0.5s ease;
-    transition: all 0.2s ease;
+    transition: border-color 0.15s ease;
 }
 
 .graph-card:hover,
 .stats-section:hover,
 .audit-section:hover,
 .activity-section:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--border-default);
+    border-color: var(--accent-primary);
 }
 
 /* ============================================
    UTILITY CLASSES
    ============================================ */
 
-.text-gradient {
-    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.glow {
-    box-shadow: var(--glow-primary);
+.text-accent {
+    color: var(--accent-primary);
 }
 
 /* ============================================
@@ -644,14 +631,14 @@ body:has(#loginForm) {
    ============================================ */
 
 .graph-axis {
-    stroke: #4a5568;
-    stroke-width: 2.5;
+    stroke: var(--border-default);
+    stroke-width: 1.5;
 }
 
 .graph-label {
-    fill: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 500;
+    fill: var(--text-muted);
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .graph-area {
@@ -660,22 +647,21 @@ body:has(#loginForm) {
 
 .graph-line {
     fill: none;
-    stroke: var(--accent-success);
-    stroke-width: 4;
+    stroke: var(--accent-primary);
+    stroke-width: 3;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
 
 .graph-dot {
-    fill: var(--accent-success);
-    stroke: var(--bg-primary);
-    stroke-width: 3;
+    fill: var(--accent-primary);
+    stroke: var(--bg-card);
+    stroke-width: 2;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .graph-dot:hover {
-    r: 8;
-    fill: var(--accent-primary);
-    filter: drop-shadow(0 0 6px var(--accent-primary));
+    fill: var(--accent-secondary);
+    stroke-width: 3;
 }

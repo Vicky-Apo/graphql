@@ -1,5 +1,5 @@
 // SVG Graph rendering functions
-// These functions create beautiful graphs using pure SVG
+// These functions create graphs using pure SVG
 
 // ===== GRAPH 1: XP Over Time (Line Graph) =====
 function renderXPTimelineGraph(xpData) {
@@ -151,8 +151,7 @@ function renderAuditRatioGraph(auditData) {
     const radius = 100;
 
     // Calculate pie slices
-    // SVG arcs are tricky! We need to calculate the path
-    function getArcPath(startAngle, endAngle, r) {
+        function getArcPath(startAngle, endAngle, r) {
         const startX = centerX + r * Math.cos(startAngle);
         const startY = centerY + r * Math.sin(startAngle);
         const endX = centerX + r * Math.cos(endAngle);
@@ -214,7 +213,7 @@ function renderAuditRatioGraph(auditData) {
                 RATIO
             </text>
             <text x="${centerX}" y="${centerY + 18}" text-anchor="middle" style="font-size: 38px; font-weight: 700; fill: #4ade80;">
-                ${auditData.ratio.toFixed(2)}
+                ${auditData.ratio.toFixed(1)}
             </text>
 
             <!-- Legend -->

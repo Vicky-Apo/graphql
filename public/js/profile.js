@@ -1,4 +1,4 @@
-// Profile page main logic - New Design
+// Profile page main logic
 // This script loads user data and displays it on the profile page
 
 // Global variable to store fetched data
@@ -183,7 +183,7 @@ function displayAuditRatio(auditData) {
     const auditReceivedFill = document.getElementById('auditReceivedBar');
 
     if (!auditData || auditData.ratio === 0) {
-        auditRatioElement.textContent = '0.00';
+        auditRatioElement.textContent = '0.0';
         auditDoneElement.textContent = '0 B';
         auditReceivedElement.textContent = '0 B';
         if (auditDoneFill) auditDoneFill.style.width = '0%';
@@ -192,7 +192,7 @@ function displayAuditRatio(auditData) {
     }
 
     // Display ratio with 2 decimal places
-    auditRatioElement.textContent = auditData.ratio.toFixed(2);
+    auditRatioElement.textContent = auditData.ratio.toFixed(1);
 
     // Format audit amounts
     function formatBytes(bytes) {
