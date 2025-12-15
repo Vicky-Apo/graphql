@@ -2,9 +2,12 @@
 
 A modern, interactive profile dashboard built with vanilla JavaScript, GraphQL, and SVG visualizations for the Zone01 Athens coding school platform.
 
+**[🚀 Live Demo](https://graphql-zone01athens.netlify.app)**
+
 ![Profile Dashboard](https://img.shields.io/badge/Status-Complete-success)
 ![GraphQL](https://img.shields.io/badge/GraphQL-API-E10098?logo=graphql)
 ![Vanilla JS](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
+![Deployed on Netlify](https://img.shields.io/badge/Deployed-Netlify-00C7B7?logo=netlify)
 
 ## Project Overview
 
@@ -237,13 +240,35 @@ All XP and level data is filtered by the current event/cohort to show accurate c
 - GraphQL error parsing
 - Graceful fallbacks for missing data
 
-## Hosting
+## Deployment
 
-This project can be hosted on:
+### Live Site
+
+The application is deployed on Netlify with automatic deployments from GitHub:
+
+**Live URL**: [https://graphql-zone01athens.netlify.app](https://graphql-zone01athens.netlify.app)
+
+### Deployment Setup
+
+This project uses **continuous deployment** via Netlify:
+
+1. **GitHub Repository** → Code is pushed to GitHub
+2. **Netlify Detection** → Netlify automatically detects changes
+3. **Build & Deploy** → Site is built and deployed within seconds
+4. **Global CDN** → Content delivered from servers worldwide
+
+**Configuration:**
+- **Build Command**: None (static site)
+- **Publish Directory**: `public`
+- **Production Branch**: `main`
+
+### Alternative Hosting Options
+
+This project can also be hosted on:
 - **GitHub Pages**: Free static hosting
-- **Netlify**: Automatic deployments from Git
 - **Vercel**: Zero-config deployments
 - **GitLab Pages**: Integrated with GitLab repos
+- **AWS S3 + CloudFront**: Scalable cloud hosting
 
 ## Responsive Design
 
@@ -313,7 +338,5 @@ This project is created as part of the Zone01 Athens curriculum.
 - Fellow students for feedback and testing
 
 ---
-
-**Live Demo**: [Add your hosted URL here]
 
 **Last Updated**: December 2025
