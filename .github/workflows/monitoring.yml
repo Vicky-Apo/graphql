@@ -1,0 +1,65 @@
+name: Health Monitoring
+
+on:
+  schedule:
+    # Run every 30 minutes
+    - cron: '*/30 * * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  health-check:
+    name: Website Health Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Check website availability
+        run: |
+          echo "🏥 Checking website health..."
+          
+          URL="https://graphql-zone01athens.netlify.app"
+          
+          # Check HTTP status
+          response=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
+          
+          if [ "$response" = "200" ]; then
+            echo "✅ Website is UP (HTTP $response)"
+          else
+            echo "❌ Website is DOWN (HTTP $response)"
+            exit 1
+          fi
+
+      - name: Check response time
+        run: |
+          echo "⏱️ Checking response time..."
+          
+          URL="https://graphql-zone01athens.netlify.app"
+          
+          # Measure response time
+          time_total=$(curl -o /dev/null -s -w '%{time_total}' "$URL")
+          time_ms=$(echo "$time_total * 1000" | bc | cut -d. -f1)
+          
+          echo "Response time: ${time_ms}ms"
+          
+          if [ "$time_ms" -lt 3000 ]; then
+            echo "✅ Response time is good (<3s)"
+          else
+            echo "⚠️ Response time is slow (${time_ms}ms > 3000ms)"
+          fi
+
+      - name: Check API connectivity
+        run: |
+          echo "🔌 Checking Zone01 API..."
+          
+          API_URL="https://platform.zone01.gr/api/auth/signin"
+          
+          response=$(curl -s -o /dev/null -w "%{http_code}" "$API_URL")
+          
+          echo "Zone01 API Status: HTTP $response"
+
+      - name: Check SSL certificate
+        run: |
+          echo "🔒 Checking SSL certificate..."
+          
+          expiry=$(echo | openssl s_client -servername graphql-zone01athens.netlify.app -connect graphql-zone01athens.netlify.app:443 2>/dev/null | openssl x509 -noout -dates | grep notAfter | cut -d= -f2)
+          
+          echo "SSL Certificate expires: $expiry"

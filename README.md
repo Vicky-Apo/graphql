@@ -330,6 +330,61 @@ Breakpoints:
 - Base64 encoding for Basic auth
 - Token expiration handled by API
 
+## 🐳 Running with Docker
+
+The application is containerized using Docker with nginx:alpine base image.
+
+### Quick Start with Docker
+
+# Build and run with docker-compose
+
+docker-compose up -d
+
+# Access the application
+
+open http://localhost:8081### Container Details
+
+# Build image
+
+docker build -t graphql-profile.
+
+# Run container
+docker run -d -p 8080:80 --name graphql-app graphql-profile
+
+# View logs
+
+docker logs graphql-app
+
+# Stop container
+
+docker stop graphql-app### Image Details
+
+- **Base Image:** nginx:alpine (~5MB)
+- **Final Image Size:** ~10MB
+- **Includes:** Security headers, caching, SPA routing
+- **Port Mapping:** 8081:80
+- **Web Server:** nginx with custom configuration
+- **Features:** 
+
+### Development
+
+# View logs
+
+docker-compose logs -f
+
+# Rebuild after changes
+
+docker-compose up -d --build
+
+# Stop container
+
+docker-compose down
+
+# Shell access
+
+docker exec -it graphql_web_1 sh
+
+
 ## Learning Outcomes
 
 This project demonstrates understanding of:

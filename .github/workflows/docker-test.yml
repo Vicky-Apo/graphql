@@ -1,0 +1,72 @@
+name: Docker Tests
+
+on:
+  push:
+    paths:
+      - 'Dockerfile'
+      - 'nginx.conf'
+      - 'docker-compose.yml'
+  pull_request:
+    paths:
+      - 'Dockerfile'
+      - 'nginx.conf'
+      - 'docker-compose.yml'
+
+jobs:
+  docker-lint:
+    name: Dockerfile Linting
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run Hadolint (Dockerfile linter)
+        uses: hadolint/hadolint-action@v3.1.0
+        with:
+          dockerfile: Dockerfile
+          failure-threshold: warning
+
+  docker-security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build image for scanning
+        run: docker build -t graphql-profile:test .
+
+      - name: Run Trivy security scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'graphql-profile:test'
+          format: 'table'
+          exit-code: '0'
+          severity: 'CRITICAL,HIGH'
+
+  docker-compose-test:
+    name: Docker Compose Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test docker-compose
+        run: |
+          # Start services
+          docker-compose up -d
+          
+          # Wait for services
+          sleep 10
+          
+          # Check if container is running
+          docker-compose ps
+          
+          # Test endpoint
+          curl -f http://localhost:8081 || exit 1
+          
+          # Clean up
+          docker-compose down
