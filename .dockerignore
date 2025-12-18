@@ -4,3 +4,5 @@ node_modules
 README.md
 *.md
 .env
+.env.local
+*.env
