@@ -2,8 +2,8 @@ name: Health Monitoring
 
 on:
   schedule:
-    # Run every 30 minutes
-    - cron: '*/30 * * * *'
+    # Run once a day at 9 AM UTC
+    - cron: '0 9 * * *'
   workflow_dispatch:  # Allow manual trigger
 
 jobs:
