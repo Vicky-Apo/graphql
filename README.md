@@ -466,9 +466,68 @@ The application is deployed on Netlify with automatic deployments from GitHub:
 
 **Live URL**: [https://graphql-zone01athens.netlify.app](https://graphql-zone01athens.netlify.app)
 
+### Deployment Methods
+
+This project supports **two deployment approaches**:
+
+#### Method 1: Automated CI/CD (Recommended)
+
+Fully automated deployment using GitHub Actions:
+
+```bash
+# Simply push your code
+git push origin main
+
+# GitHub Actions automatically:
+# 1. Tests code quality
+# 2. Builds Docker image
+# 3. Runs security scans
+# 4. Deploys to Netlify
+# 5. Runs health checks
+
+# Live in ~38 seconds!
+```
+
+**Benefits:**
+- ✅ Automatic testing
+- ✅ No manual steps
+- ✅ Consistent deployments
+- ✅ Security scanning
+- ✅ Health monitoring
+
+#### Method 2: Manual Deployment
+
+Traditional deployment using the provided script:
+
+```bash
+# Make script executable (first time only)
+chmod +x deploy.sh
+
+# Deploy to development
+./deploy.sh
+
+# Deploy to production
+./deploy.sh production
+
+# Access at http://localhost:8081
+```
+
+**The script automatically:**
+- Checks Docker installation
+- Stops old containers
+- Builds new Docker image
+- Starts container with health checks
+- Shows logs and status
+
+**Benefits:**
+- ✅ Full control over deployment
+- ✅ Works without CI/CD
+- ✅ Good for local testing
+- ✅ Simple and straightforward
+
 ### Deployment Configuration
 
-This project uses **continuous deployment** via Netlify:
+**Automated CI/CD Setup:**
 
 - **GitHub Repository** → Code is pushed to GitHub
 - **GitHub Actions** → Runs tests and builds
@@ -480,7 +539,7 @@ This project uses **continuous deployment** via Netlify:
 - **Build Command**: None (static site)
 - **Publish Directory**: `public`
 - **Production Branch**: `main`
-- **Deploy Time**: ~8 minutes (including tests)
+- **Deploy Time**: ~38 seconds (automated)
 
 ### Alternative Hosting Options
 
