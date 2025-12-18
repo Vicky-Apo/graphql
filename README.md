@@ -1,8 +1,8 @@
 # Zone01 Athens - GraphQL Profile
 
-![CI/CD Pipeline](https://github.com/vapostol/graphql/workflows/CI%2FCD%20Pipeline/badge.svg)
-![Docker Tests](https://github.com/vapostol/graphql/workflows/Docker%20Tests/badge.svg)
-![Health Monitoring](https://github.com/vapostol/graphql/workflows/Health%20Monitoring/badge.svg)
+![CI/CD Pipeline](https://github.com/Vicky-Apo/graphql/workflows/CI%2FCD%20Pipeline/badge.svg)
+![Docker Tests](https://github.com/Vicky-Apo/graphql/workflows/Docker%20Tests/badge.svg)
+![Health Monitoring](https://github.com/Vicky-Apo/graphql/workflows/Health%20Monitoring/badge.svg)
 ![Uptime](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fgraphql-zone01athens.netlify.app)
 
 A modern, interactive profile dashboard built with vanilla JavaScript, GraphQL, and SVG visualizations for the Zone01 Athens coding school platform.
@@ -603,11 +603,11 @@ This project demonstrates understanding of:
 
 ## Author
 
-**Vicky Apostolou** (vapostol)
+**Vicky Apostolou**
 
 - Zone01 Athens Student
 - Gitea: [@vapostol](https://learn.zone01.gr/git/vapostol)
-- GitHub: [vapostol](https://github.com/vapostol)
+- GitHub: [@Vicky-Apo](https://github.com/Vicky-Apo)
 
 ## 🎓 About
 
