@@ -57,16 +57,16 @@ jobs:
       - name: Test docker-compose
         run: |
           # Start services
-          docker-compose up -d
+          docker compose up -d
           
           # Wait for services
           sleep 10
           
           # Check if container is running
-          docker-compose ps
+          docker compose ps
           
           # Test endpoint
           curl -f http://localhost:8081 || exit 1
           
           # Clean up
-          docker-compose down
+          docker compose down
