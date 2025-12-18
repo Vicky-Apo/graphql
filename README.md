@@ -12,6 +12,7 @@ A modern, interactive profile dashboard built with vanilla JavaScript, GraphQL, 
 ## Project Overview
 
 This project creates a personalized student profile page that queries data from Zone01's GraphQL API to display:
+
 - User statistics and progress
 - XP earned over time
 - Project completion records
@@ -21,6 +22,7 @@ This project creates a personalized student profile page that queries data from 
 ## Features
 
 ### Authentication
+
 - Secure login with JWT tokens
 - Supports both `username:password` and `email:password`
 - Base64 encoded Basic authentication
@@ -31,6 +33,7 @@ This project creates a personalized student profile page that queries data from 
 ### Profile Sections
 
 **1. Stats Section (Left Sidebar)**
+
 - Level progress with animated circular SVG indicator
 - Total XP earned (filtered by current event)
 - Projects completed count
@@ -38,12 +41,14 @@ This project creates a personalized student profile page that queries data from 
 - Audit ratio with visual progress bars
 
 **2. Main Content (Center)**
+
 - Personalized welcome message
 - Two interactive SVG graphs:
   - **XP Progress Over Time**: Line graph showing cumulative XP growth
   - **Audit Ratio**: Pie chart displaying audits done vs received
 
 **3. Activity Section (Right Sidebar)**
+
 - Current activity status
 - Recent records placeholder
 
@@ -52,6 +57,7 @@ This project creates a personalized student profile page that queries data from 
 The project implements all three required query types:
 
 **Normal Query** - Basic user information:
+
 ```graphql
 query {
   user {
@@ -63,6 +69,7 @@ query {
 ```
 
 **Query with Arguments** - Filtered XP data:
+
 ```graphql
 query GetUserXP($userId: Int!, $eventId: Int!) {
   transaction_aggregate(
@@ -82,6 +89,7 @@ query GetUserXP($userId: Int!, $eventId: Int!) {
 ```
 
 **Nested Query** - Projects with related objects:
+
 ```graphql
 query GetProjects($userId: Int!) {
   progress(
@@ -120,6 +128,7 @@ Both graphs are created using pure SVG without external libraries:
 ## Design
 
 **Modern Minimal Dark Theme**
+
 - True black backgrounds with subtle warmth
 - Muted blue accent colors (#4a7ba7)
 - Professional typography with proper hierarchy
@@ -129,6 +138,7 @@ Both graphs are created using pure SVG without external libraries:
 - Responsive 3-column layout (adapts to mobile)
 
 **CSS Architecture**
+
 - CSS custom properties for consistent theming
 - BEM-adjacent naming conventions
 - Mobile-first responsive design
@@ -165,19 +175,22 @@ graphql/
 ## Getting Started
 
 ### Prerequisites
+
 - A Zone01 Athens student account
 - Modern web browser (Chrome, Firefox, Safari, Edge)
 - Web server (for local development)
 
 ### Installation
 
-1. Clone the repository:
+1.Clone the repository:
+
 ```bash
 git clone https://learn.zone01.gr/git/vapostol/graphql.git
 cd graphql
 ```
 
-2. Serve the files using any web server:
+2.Serve the files using any web server:
+
 ```bash
 # Option 1: Python
 python3 -m http.server 8000
@@ -189,7 +202,8 @@ npx serve public
 php -S localhost:8000 -t public
 ```
 
-3. Open your browser and navigate to:
+3.Open your browser and navigate to:
+
 ```
 http://localhost:8000
 ```
@@ -222,12 +236,15 @@ The application queries the following GraphQL tables:
 ## Key Features Implementation
 
 ### Event-Filtered Data
+
 All XP and level data is filtered by the current event/cohort to show accurate campus-specific progress:
+
 - Extracts `eventId` from user's cohort data
 - Applies `eventId` filter to all XP and level queries
 - Ensures accurate statistics per campus enrollment
 
 ### JWT Token Handling
+
 - Token extracted from signin response
 - Stored in localStorage for persistence
 - Automatically sent with Bearer authentication
@@ -235,6 +252,7 @@ All XP and level data is filtered by the current event/cohort to show accurate c
 - Token cleared on logout
 
 ### Error Handling
+
 - Network error detection
 - Invalid credentials feedback
 - GraphQL error parsing
@@ -258,6 +276,7 @@ This project uses **continuous deployment** via Netlify:
 4. **Global CDN** → Content delivered from servers worldwide
 
 **Configuration:**
+
 - **Build Command**: None (static site)
 - **Publish Directory**: `public`
 - **Production Branch**: `main`
@@ -265,6 +284,7 @@ This project uses **continuous deployment** via Netlify:
 ### Alternative Hosting Options
 
 This project can also be hosted on:
+
 - **GitHub Pages**: Free static hosting
 - **Vercel**: Zero-config deployments
 - **GitLab Pages**: Integrated with GitLab repos
@@ -273,6 +293,7 @@ This project can also be hosted on:
 ## Responsive Design
 
 Breakpoints:
+
 - **Desktop**: 1400px+ (3-column layout)
 - **Tablet**: 1200px - 1400px (compressed columns)
 - **Mobile**: < 1200px (single column, sidebars hidden)
@@ -312,6 +333,7 @@ Breakpoints:
 ## Learning Outcomes
 
 This project demonstrates understanding of:
+
 - GraphQL query language and schema introspection
 - JWT authentication and authorization
 - SVG creation and manipulation
@@ -324,12 +346,18 @@ This project demonstrates understanding of:
 ## Author
 
 **Vicky Apostolou** (vapostol)
+
 - Zone01 Athens Student
 - Gitea: [@vapostol](https://learn.zone01.gr/git/vapostol)
 
-## License
+## 🎓 About
 
-This project is created as part of the Zone01 Athens curriculum.
+This project was built as part of the Zone01 Athens curriculum.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 ## Acknowledgments
 

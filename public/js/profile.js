@@ -1,4 +1,3 @@
-// Profile page main logic
 // This script loads user data and displays it on the profile page
 
 // Global variable to store fetched data
@@ -103,7 +102,7 @@ async function loadUserData(userId) {
         console.error('Error loading user data:', error);
 
         // Show error message
-        alert('Failed to load profile data. Please try logging in again.');
+        alert('Failed to load profile data. Please try logging in again!');
 
         // Clear auth and redirect to login
         clearAuthData();

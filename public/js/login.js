@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Login failed (wrong username/password, etc.)
 
                 // Try to get error message from server
-                let errorText = 'Invalid credentials. Please try again.';
+                let errorText = 'Invalid credentials. Please try again!';
 
                 try {
                     const errorData = await response.json();
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             // This runs if there's a network error or other problem
             console.error('Login error:', error);
-            displayErrorMessage('Network error. Please check your connection and try again.');
+            displayErrorMessage('Network error. Please check your connection and try again!');
         } finally {
             // ===== STEP 14: Re-enable the button =====
             // "finally" always runs, whether success or error

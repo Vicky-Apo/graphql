@@ -1,4 +1,3 @@
-// Configuration file for Zone01 Athens GraphQL API
 // This file stores all the API endpoints we need to connect to
 
 const API_CONFIG = {
@@ -8,9 +7,9 @@ const API_CONFIG = {
     // CORS proxy (needed because Zone01 blocks localhost)
     CORS_PROXY: 'https://corsproxy.io',
 
-    // Use proxy for development (set to false when deployed)
-    USE_PROXY: true,
-
+    // Automatically detect: use proxy only on localhost
+    USE_PROXY: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1',
+    
     // Where we send login requests (username + password)
     get SIGNIN_ENDPOINT() {
         if (this.USE_PROXY) {
