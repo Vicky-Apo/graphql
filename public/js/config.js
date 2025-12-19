@@ -7,8 +7,9 @@ const API_CONFIG = {
     // CORS proxy (needed because Zone01 blocks localhost)
     CORS_PROXY: 'https://corsproxy.io',
 
-    // Automatically detect: use proxy only on localhost
-    USE_PROXY: window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1',
+    // Automatically detect: use proxy when NOT on Zone01's domain
+    // We need the proxy on localhost AND on GitHub Pages (any domain that's not Zone01)
+    USE_PROXY: window.location.hostname !== 'platform.zone01.gr',
     
     // Where we send login requests (username + password)
     get SIGNIN_ENDPOINT() {
