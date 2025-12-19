@@ -2,7 +2,7 @@
 IMAGE_NAME = graphql-profile
 CONTAINER_NAME = graphql-app
 PORT = 8081
-NETLIFY_URL = https://graphql-zone01athens.netlify.app
+PRODUCTION_URL = https://vicky-apo.github.io/graphql/
 
 # Default target (runs when you just type 'make')
 .DEFAULT_GOAL := help
@@ -98,9 +98,9 @@ deploy: ## Deploy using the deploy.sh script
 	./deploy.sh
 
 # Test production site
-test-prod: ## Test the production Netlify site
+test-prod: ## Test the production GitHub Pages site
 	@echo "Testing production site..."
-	@curl -f -I $(NETLIFY_URL) > /dev/null 2>&1 && echo "✓ Production site is online!" || echo "✗ Production site is not responding"
+	@curl -f -I $(PRODUCTION_URL) > /dev/null 2>&1 && echo "✓ Production site is online!" || echo "✗ Production site is not responding"
 
 # Health check (comprehensive)
 health: ## Run comprehensive health check
@@ -118,7 +118,7 @@ health: ## Run comprehensive health check
 	@curl -f http://localhost:$(PORT) > /dev/null 2>&1 && echo "   ✓ Local site responds (http://localhost:$(PORT))" || echo "   ✗ Local site not responding"
 	@echo ""
 	@echo "4. Checking production site..."
-	@curl -f $(NETLIFY_URL) > /dev/null 2>&1 && echo "   ✓ Production site responds ($(NETLIFY_URL))" || echo "   ✗ Production site not responding"
+	@curl -f $(PRODUCTION_URL) > /dev/null 2>&1 && echo "   ✓ Production site responds ($(PRODUCTION_URL))" || echo "   ✗ Production site not responding"
 	@echo ""
 
 # Git shortcuts
@@ -142,7 +142,7 @@ info: ## Show project information
 	@echo "Container Name:    $(CONTAINER_NAME)"
 	@echo "Local Port:        $(PORT)"
 	@echo "Local URL:         http://localhost:$(PORT)"
-	@echo "Production URL:    $(NETLIFY_URL)"
+	@echo "Production URL:    $(PRODUCTION_URL)"
 	@echo ""
 	@echo "GitHub:            https://github.com/Vicky-Apo/graphql"
 	@echo "Gitea:             https://platform.zone01.gr/git/vapostol/graphql/"
@@ -162,4 +162,5 @@ validate: ## Validate Docker and config files
 	@echo "✓ Validation complete"
 
 .PHONY: help build up down remove logs rebuild clean run stop test status shell deploy test-prod health git-status git-push info validate
+
 

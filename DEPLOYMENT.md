@@ -39,7 +39,7 @@ make git-push        # Push to both GitHub and Gitea
 ### What It Does
 - Automatically tests, builds, and deploys on every push
 - Runs security scans and health checks
-- Deploys to Netlify CDN globally
+- Deploys to GitHub Pages (free, unlimited)
 - Completes in ~38 seconds
 
 ### How to Use
@@ -56,12 +56,12 @@ git push origin main
 1. ✅ Code quality checks (HTML, JS validation)
 2. ✅ Security scanning (secrets, vulnerabilities)
 3. ✅ Docker build and testing
-4. ✅ Deployment to Netlify
+4. ✅ Deployment to GitHub Pages
 5. ✅ Health monitoring
 
 ### View Pipeline
-- GitHub: https://github.com/Vicky-Apo/graphql/actions
-- Live Site: https://graphql-zone01athens.netlify.app
+- GitHub Actions: https://github.com/Vicky-Apo/graphql/actions
+- Live Site: https://vicky-apo.github.io/graphql/
 
 ---
 
@@ -127,7 +127,7 @@ docker rm -f graphql-app
 | **Testing** | Automatic | Manual |
 | **Security Scans** | Yes | No |
 | **Monitoring** | Yes | No |
-| **Global CDN** | Yes | No |
+| **Cost** | Free (GitHub Pages) | Free (Local) |
 | **Local Testing** | No | Yes |
 | **Bocal Requirement** | ✅ Exceeds | ✅ Satisfies |
 
@@ -138,7 +138,7 @@ docker rm -f graphql-app
 ### Use Automated CI/CD When:
 - ✅ Deploying to production
 - ✅ Want automatic testing
-- ✅ Need global availability
+- ✅ Need public hosting (free on GitHub Pages)
 - ✅ Demonstrating DevOps skills
 
 ### Use Manual Script When:

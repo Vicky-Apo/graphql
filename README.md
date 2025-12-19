@@ -3,17 +3,17 @@
 ![CI/CD Pipeline](https://github.com/Vicky-Apo/graphql/workflows/CI%2FCD%20Pipeline/badge.svg)
 ![Docker Tests](https://github.com/Vicky-Apo/graphql/workflows/Docker%20Tests/badge.svg)
 ![Health Monitoring](https://github.com/Vicky-Apo/graphql/workflows/Health%20Monitoring/badge.svg)
-![Uptime](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fgraphql-zone01athens.netlify.app)
+![Uptime](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fvicky-apo.github.io%2Fgraphql%2F)
 
 A modern, interactive profile dashboard built with vanilla JavaScript, GraphQL, and SVG visualizations for the Zone01 Athens coding school platform.
 
-**[🚀 Live Demo](https://graphql-zone01athens.netlify.app)**
+**[🚀 Live Demo](https://vicky-apo.github.io/graphql/)**
 
 ![Profile Dashboard](https://img.shields.io/badge/Status-Complete-success)
 ![GraphQL](https://img.shields.io/badge/GraphQL-API-E10098?logo=graphql)
 ![Vanilla JS](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker)
-![Deployed on Netlify](https://img.shields.io/badge/Deployed-Netlify-00C7B7?logo=netlify)
+![Deployed on GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-181717?logo=github)
 
 ## 📋 Table of Contents
 
@@ -499,7 +499,7 @@ All XP and level data is filtered by the current event/cohort to show accurate c
 
 The application is deployed on Netlify with automatic deployments from GitHub:
 
-**Live URL**: [https://graphql-zone01athens.netlify.app](https://graphql-zone01athens.netlify.app)
+**Live URL**: [https://vicky-apo.github.io/graphql/](https://vicky-apo.github.io/graphql/)
 
 ### Deployment Methods
 

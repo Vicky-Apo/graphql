@@ -16,7 +16,7 @@ jobs:
         run: |
           echo "🏥 Checking website health..."
           
-          URL="https://graphql-zone01athens.netlify.app"
+          URL="https://vicky-apo.github.io/graphql/"
           
           # Check HTTP status
           response=$(curl -s -o /dev/null -w "%{http_code}" "$URL")
@@ -32,7 +32,7 @@ jobs:
         run: |
           echo "⏱️ Checking response time..."
           
-          URL="https://graphql-zone01athens.netlify.app"
+          URL="https://vicky-apo.github.io/graphql/"
           
           # Measure response time
           time_total=$(curl -o /dev/null -s -w '%{time_total}' "$URL")
@@ -60,6 +60,6 @@ jobs:
         run: |
           echo "🔒 Checking SSL certificate..."
           
-          expiry=$(echo | openssl s_client -servername graphql-zone01athens.netlify.app -connect graphql-zone01athens.netlify.app:443 2>/dev/null | openssl x509 -noout -dates | grep notAfter | cut -d= -f2)
+          expiry=$(echo | openssl s_client -servername vicky-apo.github.io -connect vicky-apo.github.io:443 2>/dev/null | openssl x509 -noout -dates | grep notAfter | cut -d= -f2)
           
           echo "SSL Certificate expires: $expiry"
