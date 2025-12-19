@@ -2,6 +2,38 @@
 
 This project supports **two deployment methods** to satisfy both modern DevOps practices and traditional requirements.
 
+## 📦 Quick Start with Makefile
+
+The project includes a Makefile for simplified DevOps operations:
+
+```bash
+make help            # Show all available commands
+make up              # Start the application
+make deploy          # Run deploy.sh script
+make health          # Run comprehensive health check
+make git-push        # Push to both GitHub and Gitea
+```
+
+**All Makefile Commands:**
+| Command | Description |
+|---------|-------------|
+| `make help` | Show all available commands |
+| `make build` | Build Docker image |
+| `make up` | Start application |
+| `make down` | Stop application |
+| `make logs` | View logs (live) |
+| `make rebuild` | Rebuild and restart |
+| `make test` | Test if application is running |
+| `make health` | Comprehensive health check |
+| `make clean` | Remove containers and images |
+| `make shell` | Open shell in container |
+| `make deploy` | Run deploy.sh script |
+| `make validate` | Validate all config files |
+| `make info` | Show project information |
+| `make git-push` | Push to both GitHub and Gitea |
+
+---
+
 ## 🚀 Method 1: Automated CI/CD (Recommended)
 
 ### What It Does

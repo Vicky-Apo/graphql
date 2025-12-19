@@ -266,7 +266,42 @@ const API_CONFIG = {
 
 The application is containerized using Docker with nginx:alpine base image.
 
-### Quick Start with Docker
+### Quick Start with Makefile (Recommended)
+
+```bash
+# Show all available commands
+make help
+
+# Start the application
+make up
+
+# View logs in real-time
+make logs
+
+# Test if application is running
+make test
+
+# Stop the application
+make down
+```
+
+**All Makefile Commands:**
+- `make help` - Show all available commands
+- `make build` - Build Docker image
+- `make up` - Start application
+- `make down` - Stop application
+- `make logs` - View logs (live)
+- `make rebuild` - Rebuild and restart
+- `make test` - Test if application is running
+- `make health` - Comprehensive health check
+- `make clean` - Remove containers and images
+- `make shell` - Open shell in container
+- `make deploy` - Run deploy.sh script
+- `make validate` - Validate all config files
+- `make info` - Show project information
+- `make git-push` - Push to both GitHub and Gitea
+
+### Quick Start with Docker Compose
 
 ```bash
 # Build and run with docker-compose
