@@ -57,11 +57,11 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Validate docker-compose file
+      - name: Validate docker compose file
         run: |
-          # Check if docker-compose file is valid
-          if command -v docker-compose &> /dev/null; then
-            docker-compose config
+          # Check if docker compose file is valid
+          if command -v docker compose &> /dev/null; then
+            docker compose config
           elif command -v docker &> /dev/null; then
             docker compose config
           else
@@ -69,11 +69,11 @@ jobs:
             exit 0
           fi
           
-      - name: Build with docker-compose
+      - name: Build with docker compose
         run: |
           # Try to build (but not run) to verify configuration
-          if command -v docker-compose &> /dev/null; then
-            docker-compose build
+          if command -v docker compose &> /dev/null; then
+            docker compose build
           elif command -v docker &> /dev/null; then
             docker compose build
           fi
