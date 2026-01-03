@@ -209,10 +209,10 @@ function renderAuditRatioGraph(auditData) {
             <circle cx="${centerX}" cy="${centerY}" r="60" fill="#1a1d2e" />
 
             <!-- Ratio text in center -->
-            <text x="${centerX}" y="${centerY - 12}" text-anchor="middle" style="font-size: 13px; fill: #a8b0c8; text-transform: uppercase; letter-spacing: 1px;">
+            <text x="${centerX}" y="${centerY - 5}" text-anchor="middle" dominant-baseline="middle" style="font-size: 10px; fill: #a8b0c8; text-transform: uppercase; letter-spacing: 0.5px;">
                 RATIO
             </text>
-            <text x="${centerX}" y="${centerY + 18}" text-anchor="middle" style="font-size: 38px; font-weight: 700; fill: #4ade80;">
+            <text x="${centerX}" y="${centerY + 12}" text-anchor="middle" dominant-baseline="middle" style="font-size: 26px; font-weight: 600; fill: #4ade80;">
                 ${auditData.ratio.toFixed(1)}
             </text>
 
