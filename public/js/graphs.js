@@ -212,7 +212,7 @@ function renderAuditRatioGraph(auditData) {
             <text x="${centerX}" y="${centerY - 5}" text-anchor="middle" dominant-baseline="middle" style="font-size: 10px; fill: #a8b0c8; text-transform: uppercase; letter-spacing: 0.5px;">
                 RATIO
             </text>
-            <text x="${centerX}" y="${centerY + 12}" text-anchor="middle" dominant-baseline="middle" style="font-size: 26px; font-weight: 600; fill: #4ade80; font-family: 'JetBrains Mono', monospace;">
+            <text x="${centerX}" y="${centerY + 12}" text-anchor="middle" dominant-baseline="middle" style="font-size: 26px; font-weight: 500; fill: #4ade80; letter-spacing: -1px;">
                 ${auditData.ratio.toFixed(1)}
             </text>
 
