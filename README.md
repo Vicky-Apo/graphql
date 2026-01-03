@@ -15,14 +15,14 @@ A modern, interactive profile dashboard built with vanilla JavaScript, GraphQL, 
 ![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker)
 ![Deployed on GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-181717?logo=github)
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Project Overview](#project-overview)
 - [Features](#features)
 - [Technology Stack](#technology-stack)
 - [Getting Started](#getting-started)
-- [Docker Deployment](#-docker-deployment)
-- [CI/CD Pipeline](#-cicd-pipeline)
+- [Docker Deployment](#docker-deployment)
+- [CI/CD Pipeline](#cicd-pipeline)
 - [Architecture](#architecture)
 - [Security](#security)
 - [Performance](#performance)
@@ -37,6 +37,7 @@ This project creates a personalized student profile page that queries data from 
 - Project completion records
 - Audit ratio and performance metrics
 - Interactive SVG graphs for data visualization
+
 
 ## Features
 
@@ -137,6 +138,9 @@ Both graphs are created using pure SVG without external libraries:
 - Line chart with area fill gradient
 - Interactive data points with tooltips
 - Responsive scaling based on data range
+- Subtle hover effects (border color transitions)
+- Smooth animations and micro-interactions
+- Responsive 3-column layout (adapts to mobile)
 - Formatted axes (XP values with k/M suffixes)
 
 **Audit Ratio Pie Chart:**
@@ -177,7 +181,7 @@ Both graphs are created using pure SVG without external libraries:
 | Storage | LocalStorage | Token persistence |
 | Containerization | Docker | Portability & deployment |
 | CI/CD | GitHub Actions | Automation |
-| Hosting | Netlify | CDN & deployment |
+| Hosting | GitHub Pages | Static site hosting |
 | Web Server | nginx:alpine | Production server |
 
 ## Project Structure
@@ -204,7 +208,7 @@ graphql/
 ├── Dockerfile                  # Docker image definition
 ├── docker-compose.yml          # Docker Compose configuration
 ├── nginx.conf                  # nginx server configuration
-├── netlify.toml                # Netlify deployment config
+├── netlify.toml                # Legacy config (not used)
 └── README.md                   # This file
 ```
 
@@ -262,7 +266,7 @@ const API_CONFIG = {
 };
 ```
 
-## 🐳 Docker Deployment
+## Docker Deployment
 
 The application is containerized using Docker with nginx:alpine base image.
 
@@ -357,7 +361,7 @@ docker exec -it graphql_web_1 sh
 docker ps
 ```
 
-## 🔄 CI/CD Pipeline
+## CI/CD Pipeline
 
 Automated deployment pipeline using GitHub Actions with three workflows:
 
@@ -380,8 +384,8 @@ Automated deployment pipeline using GitHub Actions with three workflows:
 
 #### 3. Deploy to Production (1-2 minutes)
 
-- Automatic Netlify deployment
-- Environment variable injection
+- Automatic GitHub Pages deployment
+- Static file publishing
 - Deployment notifications
 - GitHub commit status updates
 
@@ -425,19 +429,20 @@ Automated monitoring checks every 30 minutes:
 └──────┬──────┘
        │ Push triggers
        ▼
-┌─────────────┐
+┌──────────────┐
 │GitHub Actions│ (CI/CD Pipeline)
-└──────┬──────┘
+└──────┬───────┘
        │
        ├─► Lint & Test
        ├─► Build Docker Image
-       └─► Deploy to Netlify
+       └─► Deploy to GitHub Pages
               │
               ▼
-       ┌─────────────┐
-       │   Netlify   │ (Global CDN)
-       │  Production │
-       └─────────────┘
+       ┌─────────────────┐
+       │  GitHub Pages   │ (Static Hosting)
+       │   Production    │
+       └─────────────────┘
+
 ```
 
 ### Data Flow
@@ -497,7 +502,8 @@ All XP and level data is filtered by the current event/cohort to show accurate c
 
 ### Live Site
 
-The application is deployed on Netlify with automatic deployments from GitHub:
+The application is deployed on GitHub Pages with automatic deployments from GitHub Actions:
+
 
 **Live URL**: [https://vicky-apo.github.io/graphql/](https://vicky-apo.github.io/graphql/)
 
@@ -517,18 +523,18 @@ git push origin main
 # 1. Tests code quality
 # 2. Builds Docker image
 # 3. Runs security scans
-# 4. Deploys to Netlify
+# 4. Deploys to GitHub Pages
 # 5. Runs health checks
 
 # Live in ~38 seconds!
 ```
 
 **Benefits:**
-- ✅ Automatic testing
-- ✅ No manual steps
-- ✅ Consistent deployments
-- ✅ Security scanning
-- ✅ Health monitoring
+- Automatic testing
+- No manual steps
+- Consistent deployments
+- Security scanning
+- Health monitoring
 
 #### Method 2: Manual Deployment
 
@@ -555,10 +561,10 @@ chmod +x deploy.sh
 - Shows logs and status
 
 **Benefits:**
-- ✅ Full control over deployment
-- ✅ Works without CI/CD
-- ✅ Good for local testing
-- ✅ Simple and straightforward
+- Full control over deployment
+- Works without CI/CD
+- Good for local testing
+- Simple and straightforward
 
 ### Deployment Configuration
 
@@ -566,8 +572,9 @@ chmod +x deploy.sh
 
 - **GitHub Repository** → Code is pushed to GitHub
 - **GitHub Actions** → Runs tests and builds
-- **Netlify** → Automatically deploys on success
-- **Global CDN** → Content delivered from servers worldwide
+- **GitHub Pages** → Automatically deploys on success
+- **Global CDN** → Content delivered via GitHub's CDN
+
 
 **Configuration:**
 
@@ -580,7 +587,6 @@ chmod +x deploy.sh
 
 This project can also be hosted on:
 
-- **GitHub Pages**: Free static hosting
 - **Vercel**: Zero-config deployments
 - **GitLab Pages**: Integrated with GitLab repos
 - **AWS S3 + CloudFront**: Scalable cloud hosting
@@ -637,7 +643,7 @@ Breakpoints:
 - Security headers configured (X-Frame-Options, CSP, etc.)
 - Docker image scanning with Trivy
 - Automated secret detection in CI/CD
-- HTTPS enforced via Netlify
+- HTTPS enforced via GitHub Pages
 - Regular dependency updates
 
 ### Security Headers
@@ -657,7 +663,7 @@ Referrer-Policy: strict-origin-when-cross-origin
 - **Time to Interactive**: <3s
 - **Docker Image Size**: ~10MB
 - **Uptime SLA**: 99.9%
-- **Global CDN**: Netlify Edge Network
+- **Global CDN**: GitHub Pages CDN
 
 ### Optimizations
 
@@ -686,14 +692,14 @@ This project demonstrates understanding of:
 
 ## DevOps Skills Demonstrated
 
-✅ **Containerization** - Docker with nginx:alpine  
-✅ **CI/CD** - GitHub Actions automated pipeline  
-✅ **Monitoring** - Automated health checks  
-✅ **Security** - Headers, secret scanning, image scanning  
-✅ **Documentation** - Comprehensive README, inline comments  
-✅ **Version Control** - Git workflows, branching strategy  
-✅ **Cloud Deployment** - Netlify CDN integration  
-✅ **Infrastructure as Code** - Docker Compose, workflow YAML  
+ - **Containerization** - Docker with nginx:alpine  
+ - **CI/CD** - GitHub Actions automated pipeline  
+ - **Monitoring** - Automated health checks  
+ - **Security** - Headers, secret scanning, image scanning  
+ - **Documentation** - Comprehensive README, inline comments  
+ - **Version Control** - Git workflows, branching strategy  
+ - **Cloud Deployment** - GitHub Pages integration
+ - **Infrastructure as Code** - Docker Compose, workflow YAML  
 
 ## Author
 
@@ -703,22 +709,24 @@ This project demonstrates understanding of:
 - Gitea: [@vapostol](https://learn.zone01.gr/git/vapostol)
 - GitHub: [@Vicky-Apo](https://github.com/Vicky-Apo)
 
-## 🎓 About
+## About
 
 This project was built as part of the Zone01 Athens curriculum, demonstrating full-stack development skills with a focus on DevOps practices.
 
-## 📄 License
+**Note:** This is a school project and is not actively seeking contributions. However, if you have questions, suggestions, or find issues:
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Zone01 Athens for providing the GraphQL API
-- The Zone01 platform team for infrastructure support
-- Fellow students for feedback and testing
+- Open an issue on [GitHub](https://github.com/Vicky-Apo/graphql/issues)
+- For Zone01 students: Feel free to reference this project for learning
 
 ---
 
-**Last Updated**: December 2024
+## License
 
-**Project Status**: ✅ Complete & Production Ready
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
+---
+
+**Last Updated**: January 2025
+
+
