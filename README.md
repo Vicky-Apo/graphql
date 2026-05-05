@@ -1,652 +1,138 @@
-# Zone01 Athens - GraphQL Profile
+# GraphQL Profile Dashboard
 
 ![CI/CD Pipeline](https://github.com/Vicky-Apo/graphql/workflows/CI%2FCD%20Pipeline/badge.svg)
 ![Docker Tests](https://github.com/Vicky-Apo/graphql/workflows/Docker%20Tests/badge.svg)
 ![Health Monitoring](https://github.com/Vicky-Apo/graphql/workflows/Health%20Monitoring/badge.svg)
 ![Uptime](https://img.shields.io/website?down_message=offline&up_message=online&url=https%3A%2F%2Fvicky-apo.github.io%2Fgraphql%2F)
 
-A modern, interactive profile dashboard built with vanilla JavaScript, GraphQL, and SVG visualizations for the Zone01 Athens coding school platform.
+An interactive profile dashboard that authenticates with a GraphQL API and visualizes student progress through custom SVG charts — built with zero external dependencies.
 
-**[🚀 Live Demo](https://vicky-apo.github.io/graphql/)**
+**[Live Demo](https://vicky-apo.github.io/graphql/)**
 
-![Profile Dashboard](https://img.shields.io/badge/Status-Complete-success)
-![GraphQL](https://img.shields.io/badge/GraphQL-API-E10098?logo=graphql)
-![Vanilla JS](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
-![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker)
-![Deployed on GitHub Pages](https://img.shields.io/badge/Deployed-GitHub%20Pages-181717?logo=github)
-
-## Table of Contents
-
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Technology Stack](#technology-stack)
-- [Getting Started](#getting-started)
-- [Docker Deployment](#docker-deployment)
-- [CI/CD Pipeline](#cicd-pipeline)
-- [Architecture](#architecture)
-- [Security](#security)
-- [Performance](#performance)
-- [Author](#author)
-
-## Project Overview
-
-This project creates a personalized student profile page that queries data from Zone01's GraphQL API to display:
-
-- User statistics and progress
-- XP earned over time
-- Project completion records
-- Audit ratio and performance metrics
-- Interactive SVG graphs for data visualization
-
+---
 
 ## Features
 
-### Authentication
+- JWT authentication (username or email login)
+- XP progression line chart with tooltips and area fill
+- Audit ratio donut chart
+- Level progress indicator, project count, and audit stats
+- Responsive 3-column layout (collapses to single column on mobile)
+- Deployed via GitHub Actions to GitHub Pages; optionally self-hosted with Docker
 
-- Secure login with JWT tokens
-- Supports both `username:password` and `email:password`
-- Base64 encoded Basic authentication
-- Bearer token authorization for GraphQL queries
-- Error handling for invalid credentials
-- Logout functionality with token cleanup
+---
 
-### Profile Sections
+## Tech Stack
 
-#### 1. Stats Section (Left Sidebar)
+| Layer | Technology |
+|-------|------------|
+| Frontend | Vanilla JavaScript (ES6+) |
+| API | GraphQL |
+| Auth | JWT + Basic Auth |
+| Graphics | SVG (native) |
+| Styling | Pure CSS3 |
+| Storage | LocalStorage |
+| Web Server | nginx:alpine |
+| Container | Docker |
+| CI/CD | GitHub Actions |
+| Hosting | GitHub Pages |
 
-- Level progress with animated circular SVG indicator
-- Total XP earned (filtered by current event)
-- Projects completed count
-- Audits done count
-- Audit ratio with visual progress bars
+---
 
-#### 2. Main Content (Center)
+## Running Locally
 
-- Personalized welcome message
-- Two interactive SVG graphs:
-  - **XP Progress Over Time**: Line graph showing cumulative XP growth
-  - **Audit Ratio**: Pie chart displaying audits done vs received
+**With Docker (recommended):**
 
-#### 3. Activity Section (Right Sidebar)
-
-- Current activity status
-- Recent records placeholder
-
-### GraphQL Queries
-
-The project implements all three required query types:
-
-#### Normal Query - Basic user information
-
-```graphql
-query {
-  user {
-    id
-    login
-    email
-  }
-}
+```bash
+git clone https://github.com/Vicky-Apo/graphql.git
+cd graphql
+make up
+# open http://localhost:8081
 ```
 
-#### Query with Arguments - Filtered XP data
+**Without Docker:**
 
-```graphql
-query GetUserXP($userId: Int!, $eventId: Int!) {
-  transaction_aggregate(
-    where: {
-      userId: { _eq: $userId }
-      type: { _eq: "xp" }
-      eventId: { _eq: $eventId }
-    }
-  ) {
-    aggregate {
-      sum {
-        amount
-      }
-    }
-  }
-}
+```bash
+python3 -m http.server 8000 --directory public
+# open http://localhost:8000
 ```
 
-#### Nested Query - Projects with related objects
+**Makefile reference:**
 
-```graphql
-query GetProjects($userId: Int!) {
-  progress(
-    where: {
-      userId: { _eq: $userId }
-      grade: { _gte: 1 }
-    }
-  ) {
-    id
-    grade
-    object {
-      id
-      name
-      type
-    }
-  }
-}
+```bash
+make up        # start
+make down      # stop
+make logs      # tail logs
+make rebuild   # rebuild and restart
+make test      # health check
+make shell     # shell into container
+make clean     # remove containers and images
 ```
 
-### SVG Graphs
-
-Both graphs are created using pure SVG without external libraries:
-
-**XP Timeline Graph:**
-
-- Line chart with area fill gradient
-- Interactive data points with tooltips
-- Responsive scaling based on data range
-- Subtle hover effects (border color transitions)
-- Smooth animations and micro-interactions
-- Responsive 3-column layout (adapts to mobile)
-- Formatted axes (XP values with k/M suffixes)
-
-**Audit Ratio Pie Chart:**
-
-- Donut chart showing done vs received audits
-- Percentage breakdown in legend
-- Ratio displayed in center (1 decimal place)
-- Color-coded sections (green for done, blue for received)
-
-## Design
-
-### Modern Minimal Dark Theme
-
-- True black backgrounds with subtle warmth
-- Muted blue accent colors (#4a7ba7)
-- Professional typography with proper hierarchy
-- Refined spacing and generous padding
-- Subtle hover effects (border color transitions)
-- Smooth animations and micro-interactions
-- Responsive 3-column layout (adapts to mobile)
-
-### CSS Architecture
-
-- CSS custom properties for consistent theming
-- BEM-adjacent naming conventions
-- Mobile-first responsive design
-- No CSS frameworks (pure CSS)
-
-## Technology Stack
-
-| Layer | Technology | Purpose |
-|-------|------------|---------|
-| Frontend | Vanilla JavaScript (ES6+) | User interface |
-| API | GraphQL | Data fetching |
-| Auth | JWT | Authentication & authorization |
-| Graphics | SVG | Data visualization |
-| Styling | Pure CSS3 | Design & layout |
-| Storage | LocalStorage | Token persistence |
-| Containerization | Docker | Portability & deployment |
-| CI/CD | GitHub Actions | Automation |
-| Hosting | GitHub Pages | Static site hosting |
-| Web Server | nginx:alpine | Production server |
+---
 
 ## Project Structure
 
-```text
+```
 graphql/
-├── .github/
-│   └── workflows/
-│       ├── ci-cd.yml           # Main CI/CD pipeline
-│       ├── docker-test.yml     # Docker-specific tests
-│       └── monitoring.yml      # Health monitoring
+├── .github/workflows/
+│   ├── ci-cd.yml          # lint → build → test → deploy
+│   ├── docker-test.yml    # Hadolint + Trivy security scan
+│   └── monitoring.yml     # daily availability and SSL checks
 ├── public/
-│   ├── index.html              # Login page
-│   ├── profile.html            # Profile dashboard
-│   ├── css/
-│   │   └── styles.css          # All styling
+│   ├── index.html
+│   ├── profile.html
+│   ├── css/styles.css
 │   └── js/
-│       ├── config.js           # API endpoints configuration
-│       ├── auth.js             # Authentication helpers
-│       ├── login.js            # Login form handler
-│       ├── graphql.js          # GraphQL queries (8 queries)
-│       ├── graphs.js           # SVG graph rendering
-│       └── profile.js          # Profile page logic
-├── Dockerfile                  # Docker image definition
-├── docker-compose.yml          # Docker Compose configuration
-├── nginx.conf                  # nginx server configuration
-├── netlify.toml                # Legacy config (not used)
-└── README.md                   # This file
+│       ├── config.js      # API endpoints
+│       ├── auth.js        # JWT handling
+│       ├── login.js       # form submission
+│       ├── graphql.js     # 8 GraphQL queries
+│       ├── graphs.js      # SVG rendering
+│       └── profile.js     # dashboard logic
+├── Dockerfile
+├── docker-compose.yml
+├── nginx.conf
+└── Makefile
 ```
 
-## Getting Started
-
-### Prerequisites
-
-- A Zone01 Athens student account
-- Modern web browser (Chrome, Firefox, Safari, Edge)
-- Web server (for local development)
-
-### Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://learn.zone01.gr/git/vapostol/graphql.git
-cd graphql
-```
-
-2. Serve the files using any web server:
-
-```bash
-# Option 1: Python
-python3 -m http.server 8000
-
-# Option 2: Node.js
-npx serve public
-
-# Option 3: PHP
-php -S localhost:8000 -t public
-
-# Option 4: Docker (recommended)
-docker-compose up -d
-```
-
-3. Open your browser and navigate to:
-
-```text
-http://localhost:8000
-# or http://localhost:8081 (if using Docker)
-```
-
-### Configuration
-
-API endpoints are configured in `public/js/config.js`:
-
-```javascript
-const API_CONFIG = {
-    DOMAIN: 'https://platform.zone01.gr',
-    SIGNIN_ENDPOINT: '/api/auth/signin',
-    GRAPHQL_ENDPOINT: '/api/graphql-engine/v1/graphql',
-    TOKEN_KEY: 'zone01_token',
-    USER_ID_KEY: 'zone01_user_id'
-};
-```
-
-## Docker Deployment
-
-The application is containerized using Docker with nginx:alpine base image.
-
-### Quick Start with Makefile (Recommended)
-
-```bash
-# Show all available commands
-make help
-
-# Start the application
-make up
-
-# View logs in real-time
-make logs
-
-# Test if application is running
-make test
-
-# Stop the application
-make down
-```
-
-**All Makefile Commands:**
-- `make help` - Show all available commands
-- `make build` - Build Docker image
-- `make up` - Start application
-- `make down` - Stop application
-- `make logs` - View logs (live)
-- `make rebuild` - Rebuild and restart
-- `make test` - Test if application is running
-- `make health` - Comprehensive health check
-- `make clean` - Remove containers and images
-- `make shell` - Open shell in container
-- `make deploy` - Run deploy.sh script
-- `make validate` - Validate all config files
-- `make info` - Show project information
-- `make git-push` - Push to both GitHub and Gitea
-
-### Quick Start with Docker Compose
-
-```bash
-# Build and run with docker-compose
-docker-compose up -d
-
-# Access the application
-open http://localhost:8081
-```
-
-### Container Details
-
-- **Base Image:** nginx:alpine (~5MB)
-- **Final Image Size:** ~10MB
-- **Port Mapping:** 8081:80
-- **Web Server:** nginx with custom configuration
-- **Features:** Security headers, caching, SPA routing
-
-### Manual Docker Commands
-
-```bash
-# Build image
-docker build -t graphql-profile .
-
-# Run container
-docker run -d -p 8081:80 --name graphql-app graphql-profile
-
-# View logs
-docker logs graphql-app
-
-# Stop container
-docker stop graphql-app
-
-# Remove container
-docker rm graphql-app
-```
-
-### Development Commands
-
-```bash
-# View logs in real-time
-docker-compose logs -f
-
-# Rebuild after changes
-docker-compose up -d --build
-
-# Stop all services
-docker-compose down
-
-# Shell access to container
-docker exec -it graphql_web_1 sh
-
-# Check container status
-docker ps
-```
-
-## CI/CD Pipeline
-
-Automated deployment pipeline using GitHub Actions with three workflows:
-
-### Pipeline Stages
-
-#### 1. Lint & Code Quality (2-3 minutes)
-
-- HTML validation
-- JavaScript syntax checking
-- Security scanning (hardcoded secrets detection)
-- TODO/FIXME comment detection
-
-#### 2. Docker Build & Test (3-5 minutes)
-
-- Multi-stage Docker build
-- Container functionality testing
-- HTTP response validation
-- Security header verification
-- Image size optimization check
-
-#### 3. Deploy to Production (1-2 minutes)
-
-- Automatic GitHub Pages deployment
-- Static file publishing
-- Deployment notifications
-- GitHub commit status updates
-
-### Workflow Triggers
-
-```yaml
-# Automatic triggers:
-- Push to main/master branch
-- Pull requests to main/master
-- Docker file changes
-- Scheduled health checks (every 30 minutes)
-
-# Manual trigger:
-- workflow_dispatch (via GitHub Actions UI)
-```
-
-### Pipeline Status
-
-All workflows run automatically on every push to `main`:
-
-```text
-Push to GitHub → Lint → Build → Test → Deploy → Live in ~8 minutes
-```
-
-### Health Monitoring
-
-Automated monitoring checks every 30 minutes:
-
-- Website availability (HTTP 200 status)
-- Response time tracking (<3s threshold)
-- Zone01 API connectivity
-- SSL certificate expiration
+---
 
 ## Architecture
 
-### System Overview
-
-```text
-┌─────────────┐
-│   GitHub    │ (Source Control)
-└──────┬──────┘
-       │ Push triggers
-       ▼
-┌──────────────┐
-│GitHub Actions│ (CI/CD Pipeline)
-└──────┬───────┘
-       │
-       ├─► Lint & Test
-       ├─► Build Docker Image
-       └─► Deploy to GitHub Pages
-              │
-              ▼
-       ┌─────────────────┐
-       │  GitHub Pages   │ (Static Hosting)
-       │   Production    │
-       └─────────────────┘
-
+```
+GitHub → GitHub Actions → lint / build / scan → GitHub Pages (production)
+                                │
+                                └─► Docker image (for self-hosting)
 ```
 
-### Data Flow
+**Data flow:**
 
-```text
-User → Login Page → Zone01 Auth API → JWT Token
-                         ↓
-                    Store in localStorage
-                         ↓
-                    Profile Page
-                         ↓
-                    GraphQL API (with Bearer token)
-                         ↓
-                    Fetch & Display Data
-                         ↓
-                    Render SVG Graphs
+```
+Login → Zone01 Auth API → JWT token (localStorage)
+                               │
+                          Profile page
+                               │
+                       GraphQL API (Bearer token)
+                               │
+                     Render stats + SVG graphs
 ```
 
-## Data Sources
+---
 
-The application queries the following GraphQL tables:
+## CI/CD
 
-| Table | Usage |
-|-------|-------|
-| `user` | Basic user information (id, login, email) |
-| `transaction` | XP amounts, dates, and audit data |
-| `progress` | Project completion and grades |
-| `audit` | Audit counts and ratios |
-| `object` | Project/exercise metadata |
+Three automated workflows run on every push to `main`:
 
-## Key Features Implementation
+| Workflow | What it does |
+|----------|-------------|
+| `ci-cd.yml` | HTML validation, JS syntax check, secret scanning, Docker build + HTTP test, deploy to GitHub Pages |
+| `docker-test.yml` | Dockerfile linting (Hadolint), vulnerability scan (Trivy), Compose validation |
+| `monitoring.yml` | Daily uptime check, response time, Zone01 API reachability, SSL expiry |
 
-### Event-Filtered Data
-
-All XP and level data is filtered by the current event/cohort to show accurate campus-specific progress:
-
-- Extracts `eventId` from user's cohort data
-- Applies `eventId` filter to all XP and level queries
-- Ensures accurate statistics per campus enrollment
-
-### JWT Token Handling
-
-- Token extracted from signin response
-- Stored in localStorage for persistence
-- Automatically sent with Bearer authentication
-- User ID extracted from JWT payload
-- Token cleared on logout
-
-### Error Handling
-
-- Network error detection
-- Invalid credentials feedback
-- GraphQL error parsing
-- Graceful fallbacks for missing data
-
-## Deployment
-
-### Live Site
-
-The application is deployed on GitHub Pages with automatic deployments from GitHub Actions:
-
-
-**Live URL**: [https://vicky-apo.github.io/graphql/](https://vicky-apo.github.io/graphql/)
-
-### Deployment Methods
-
-This project supports **two deployment approaches**:
-
-#### Method 1: Automated CI/CD (Recommended)
-
-Fully automated deployment using GitHub Actions:
-
-```bash
-# Simply push your code
-git push origin main
-
-# GitHub Actions automatically:
-# 1. Tests code quality
-# 2. Builds Docker image
-# 3. Runs security scans
-# 4. Deploys to GitHub Pages
-# 5. Runs health checks
-
-# Live in ~38 seconds!
-```
-
-**Benefits:**
-- Automatic testing
-- No manual steps
-- Consistent deployments
-- Security scanning
-- Health monitoring
-
-#### Method 2: Manual Deployment
-
-Traditional deployment using the provided script:
-
-```bash
-# Make script executable (first time only)
-chmod +x deploy.sh
-
-# Deploy to development
-./deploy.sh
-
-# Deploy to production
-./deploy.sh production
-
-# Access at http://localhost:8081
-```
-
-**The script automatically:**
-- Checks Docker installation
-- Stops old containers
-- Builds new Docker image
-- Starts container with health checks
-- Shows logs and status
-
-**Benefits:**
-- Full control over deployment
-- Works without CI/CD
-- Good for local testing
-- Simple and straightforward
-
-### Deployment Configuration
-
-**Automated CI/CD Setup:**
-
-- **GitHub Repository** → Code is pushed to GitHub
-- **GitHub Actions** → Runs tests and builds
-- **GitHub Pages** → Automatically deploys on success
-- **Global CDN** → Content delivered via GitHub's CDN
-
-
-**Configuration:**
-
-- **Build Command**: None (static site)
-- **Publish Directory**: `public`
-- **Production Branch**: `main`
-- **Deploy Time**: ~38 seconds (automated)
-
-### Alternative Hosting Options
-
-This project can also be hosted on:
-
-- **Vercel**: Zero-config deployments
-- **GitLab Pages**: Integrated with GitLab repos
-- **AWS S3 + CloudFront**: Scalable cloud hosting
-- **Docker**: Self-hosted on any server
-
-## Responsive Design
-
-Breakpoints:
-
-- **Desktop**: 1400px+ (3-column layout)
-- **Tablet**: 1200px - 1400px (compressed columns)
-- **Mobile**: < 1200px (single column, sidebars hidden)
-
-## Testing Checklist
-
-- [x] Login with username:password
-- [x] Login with email:password
-- [x] Invalid credentials show error message
-- [x] Profile displays three required sections
-- [x] Data accuracy matches GraphiQL queries
-- [x] Two SVG graphs render correctly
-- [x] Graphs display accurate data
-- [x] Logout functionality works
-- [x] Normal GraphQL queries implemented
-- [x] Nested GraphQL queries implemented
-- [x] Queries with arguments implemented
-- [x] Responsive design works on all devices
-- [x] Docker containerization working
-- [x] CI/CD pipeline functional
-- [x] Automated health monitoring active
-
-## UI/UX Principles
-
-- **Minimal Design**: Clean interface without clutter
-- **Visual Hierarchy**: Clear distinction between sections
-- **Color Coding**: Consistent use of colors for meaning
-- **Feedback**: Hover states, loading indicators, animations
-- **Accessibility**: Proper contrast ratios, semantic HTML
-- **Performance**: No external dependencies, optimized rendering
+---
 
 ## Security
-
-### Application Security
-
-- No credentials stored in code
-- JWT tokens stored in localStorage only
-- HTTPS endpoints for all API calls
-- Base64 encoding for Basic auth
-- Token expiration handled by API
-- Secrets managed via GitHub Secrets
-
-### Infrastructure Security
-
-- Security headers configured (X-Frame-Options, CSP, etc.)
-- Docker image scanning with Trivy
-- Automated secret detection in CI/CD
-- HTTPS enforced via GitHub Pages
-- Regular dependency updates
-
-### Security Headers
 
 ```http
 X-Frame-Options: DENY
@@ -655,78 +141,12 @@ X-XSS-Protection: 1; mode=block
 Referrer-Policy: strict-origin-when-cross-origin
 ```
 
-## Performance
-
-### Metrics
-
-- **Load Time**: <2s (target)
-- **Time to Interactive**: <3s
-- **Docker Image Size**: ~10MB
-- **Uptime SLA**: 99.9%
-- **Global CDN**: GitHub Pages CDN
-
-### Optimizations
-
-- Minimal dependencies (vanilla JS)
-- Gzip compression enabled
-- Static asset caching (1 year)
-- Lazy loading for images
-- Efficient SVG rendering
-
-## Learning Outcomes
-
-This project demonstrates understanding of:
-
-- GraphQL query language and schema introspection
-- JWT authentication and authorization
-- SVG creation and manipulation
-- Modern CSS with custom properties
-- Vanilla JavaScript (no frameworks)
-- UI/UX design principles
-- REST API integration
-- Data visualization techniques
-- Docker containerization
-- CI/CD pipeline implementation
-- Infrastructure automation
-- Security best practices
-
-## DevOps Skills Demonstrated
-
- - **Containerization** - Docker with nginx:alpine  
- - **CI/CD** - GitHub Actions automated pipeline  
- - **Monitoring** - Automated health checks  
- - **Security** - Headers, secret scanning, image scanning  
- - **Documentation** - Comprehensive README, inline comments  
- - **Version Control** - Git workflows, branching strategy  
- - **Cloud Deployment** - GitHub Pages integration
- - **Infrastructure as Code** - Docker Compose, workflow YAML  
-
-## Author
-
-**Vicky Apostolou**
-
-- Zone01 Athens Student
-- Gitea: [@vapostol](https://learn.zone01.gr/git/vapostol)
-- GitHub: [@Vicky-Apo](https://github.com/Vicky-Apo)
-
-## About
-
-This project was built as part of the Zone01 Athens curriculum, demonstrating full-stack development skills with a focus on DevOps practices.
-
-**Note:** This is a school project and is not actively seeking contributions. However, if you have questions, suggestions, or find issues:
-
-- Open an issue on [GitHub](https://github.com/Vicky-Apo/graphql/issues)
-- For Zone01 students: Feel free to reference this project for learning
+- No credentials in source; CI/CD scans for accidental commits
+- Docker image scanned with Trivy on every change to `Dockerfile`
+- HTTPS enforced via GitHub Pages
 
 ---
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-
----
-
-**Last Updated**: January 2025
-
-
+MIT
