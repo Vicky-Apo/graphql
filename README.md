@@ -32,7 +32,7 @@ An interactive profile dashboard that authenticates with a GraphQL API and visua
 | Graphics | SVG (native) |
 | Styling | Pure CSS3 |
 | Storage | LocalStorage |
-| Web Server | nginx:alpine |
+| Web Server | nginx:1.28-alpine |
 | Container | Docker |
 | CI/CD | GitHub Actions |
 | Hosting | GitHub Pages |
@@ -90,6 +90,8 @@ graphql/
 │       ├── graphql.js     # 8 GraphQL queries
 │       ├── graphs.js      # SVG rendering
 │       └── profile.js     # dashboard logic
+├── vm-deployment/
+│   └── public/            # copy of public/ with VM-specific nginx.conf
 ├── Dockerfile
 ├── docker-compose.yml
 ├── nginx.conf
