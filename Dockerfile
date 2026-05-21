@@ -1,4 +1,4 @@
-FROM nginx:1.27-alpine
+FROM nginx:1.28-alpine
 
 LABEL maintainer="vapostol"
 LABEL description="Zone01 GraphQL Profile - static site"
