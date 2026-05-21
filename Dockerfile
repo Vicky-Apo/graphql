@@ -1,16 +1,16 @@
-# Use official nginx image
-FROM nginx:alpine
+FROM nginx:1.27-alpine
 
-# Copy your static files to nginx html directory
+LABEL maintainer="vapostol"
+LABEL description="Zone01 GraphQL Profile - static site"
+
 COPY public/ /usr/share/nginx/html/
-
-# Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Expose port 80
+RUN chown -R nginx:nginx /usr/share/nginx/html && \
+    chmod -R 755 /usr/share/nginx/html
+
+USER nginx
+
 EXPOSE 80
 
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
-
-# Docker image for Zone01 GraphQL Profile
